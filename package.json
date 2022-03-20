@@ -8,7 +8,7 @@
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "Equipo2NRC1246",
+  "author": "DavidValois",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
