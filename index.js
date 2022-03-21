@@ -10,6 +10,9 @@ const rutas_publicas = require("./routes/RutasPublicas");
 
 const app = express();
 const puerto = process.env.PORT || 8000;
+const cors_config = {
+  origin: "*",
+};
 
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
