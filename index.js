@@ -16,7 +16,7 @@ var whitelist=['http://localhost:3000','https://bancodavid.herokuapp.com']
 
 var corsOption={
   origin:  function (origin,callback){
-    if(whitelist.indexOf(origin)-1){
+    if(whitelist.indexOf(origin)!=-1){
       callback(null,true);
     }
     else{
