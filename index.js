@@ -10,18 +10,29 @@ const rutas_publicas = require("./routes/RutasPublicas");
 
 const app = express();
 const puerto = process.env.PORT || 8000;
-const cors_config = {
-  origin: "*",
-};
+app.use(cors());
+
+var whitelist=['http://localhost:3000','https://bancodavid.herokuapp.com']
+
+var corsOption={
+  origin:  function (origin,callback){
+    if(whitelist.indexOf(origin)-1){
+      callback(null,true);
+    }
+    else{
+      callback(new Error('not allowed by CORSs'));
+    }
+  }
+}
 
 var jsonParser = bodyParser.json();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
-app.use("/api", cors(cors_config), jsonParser, rutas_publicas);
-app.use("/api", cors(cors_config), jsonParser, verificar_token, rutas);
+app.use("/api", cors(corsOption), jsonParser, rutas_publicas);
+app.use("/api", cors(corsOption), jsonParser, verificar_token, rutas);
 app.use(cors());
 
-app.use("/", cors(cors_config), (req, res) => {
+app.use("/", cors(corsOption), (req, res) => {
   res.status(404).json({
     mensaje: "Error",
   });
