@@ -20,7 +20,7 @@ var corsOption={
       callback(null,true);
     }
     else{
-      callback(new Error('not allowed by CORSs'));
+      callback(new Error('not allowed by CORS'));
     }
   }
 }
